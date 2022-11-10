@@ -1,14 +1,18 @@
 package com.clarity.clarityinterface.client;
 
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
 import com.clarity.clarityinterface.Model.User;
+import com.clarity.clarityinterface.utils.SignUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * 使用 Hutool 工具类，测试接口
@@ -17,6 +21,17 @@ import java.util.HashMap;
  * @date: 2022年11月10日 15:17
  */
 public class ClarityClient {
+
+    // ak
+    private String accessKey;
+
+    // sk
+    private String secretKey;
+
+    public ClarityClient(String accessKey, String secretKey) {
+        this.accessKey = accessKey;
+        this.secretKey = secretKey;
+    }
 
     public String getNameByGet(String name) {
         //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
@@ -36,9 +51,26 @@ public class ClarityClient {
         return result;
     }
 
+    private Map<String, String> getHeaderMap(String body) {
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("accessKey", accessKey);
+        // 一定不能直接发送
+        // hashMap.put("secretKey", secretKey);
+        // 用户参数
+        hashMap.put("body", body);
+        // 随机数
+        hashMap.put("nonce", RandomUtil.randomNumbers(4));
+        // 时间戳
+        hashMap.put("timestamp", String.valueOf(System.currentTimeMillis() / 1000));
+        // 签名
+        hashMap.put("sign", SignUtils.getSign(body, secretKey));
+        return hashMap;
+    }
+
     public String getUsernameByPost(@RequestBody User user) {
         String json = JSONUtil.toJsonStr(user);
         HttpResponse httpResponse = HttpRequest.post("http://localhost:8082/api/name/user")
+                .addHeaders(getHeaderMap(json))
                 .body(json)
                 .execute();
         System.out.println(httpResponse.getStatus());

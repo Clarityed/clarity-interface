@@ -11,7 +11,7 @@ import com.clarity.clarityinterface.client.ClarityClient;
  */
 public class Main {
     public static void main(String[] args) {
-        ClarityClient client = new ClarityClient();
+        ClarityClient client = new ClarityClient("clarity", "abcdefgh");
         String result1 = client.getNameByGet("clarity");
         String result2 = client.getNameByPost("clarity");
         User user = new User();
