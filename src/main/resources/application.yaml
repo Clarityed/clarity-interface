@@ -1,6 +1,8 @@
-# ???????
 server:
   port: 8082
   servlet:
-    # ????????
     context-path: /api
+api:
+  client:
+    access-key: clarity
+    secret-key: abcdefgh

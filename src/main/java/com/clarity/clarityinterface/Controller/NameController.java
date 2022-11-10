@@ -1,7 +1,7 @@
 package com.clarity.clarityinterface.Controller;
 
-import com.clarity.clarityinterface.Model.User;
-import com.clarity.clarityinterface.utils.SignUtils;
+import com.clarity.apiclientsdk.Model.User;
+import com.clarity.apiclientsdk.utils.SignUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;

@@ -7,12 +7,9 @@ import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
 import com.clarity.clarityinterface.Model.User;
 import com.clarity.clarityinterface.utils.SignUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * 使用 Hutool 工具类，测试接口
@@ -42,7 +39,7 @@ public class ClarityClient {
         return result;
     }
 
-    public String getNameByPost(@RequestParam String name) {
+    public String getNameByPost(String name) {
         //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", "Clarity");
@@ -67,7 +64,7 @@ public class ClarityClient {
         return hashMap;
     }
 
-    public String getUsernameByPost(@RequestBody User user) {
+    public String getUsernameByPost(User user) {
         String json = JSONUtil.toJsonStr(user);
         HttpResponse httpResponse = HttpRequest.post("http://localhost:8082/api/name/user")
                 .addHeaders(getHeaderMap(json))
