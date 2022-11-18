@@ -1,7 +1,8 @@
 package com.clarity.clarityinterface;
 
-import com.clarity.apiclientsdk.Model.User;
 import com.clarity.apiclientsdk.client.ClarityClient;
+import com.clarity.apiclientsdk.model.User;
+
 
 /**
  * 客户端
