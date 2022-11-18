@@ -1,4 +1,4 @@
-package com.clarity.clarityinterface.Model;
+package com.clarity.clarityinterface.model;
 
 import lombok.Data;
 

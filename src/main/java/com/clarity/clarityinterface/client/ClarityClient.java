@@ -5,7 +5,7 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
-import com.clarity.clarityinterface.Model.User;
+import com.clarity.clarityinterface.model.User;
 import com.clarity.clarityinterface.utils.SignUtils;
 
 import java.util.HashMap;
